@@ -1,0 +1,35 @@
+{
+  "name": "xhr-shim",
+  "version": "0.1.0",
+  "description": "Polyfill XMLHttpRequest.",
+  "main": "src/index.js",
+  "scripts": {
+    "test:lint": "eslint ./src/*.js",
+    "test:tap": "npx tap --no-coverage ./test/test.*.js",
+    "test": "npm run test:lint & npm run test:tap"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/apple502j/xhr-shim.git"
+  },
+  "keywords": [
+    "xhr",
+    "polyfill",
+    "fetch"
+  ],
+  "author": "apple502j",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/apple502j/xhr-shim/issues"
+  },
+  "homepage": "https://github.com/apple502j/xhr-shim#readme",
+  "devDependencies": {
+    "abort-controller": "^3.0.0",
+    "domexception": "^2.0.1",
+    "eslint": "^7.20.0",
+    "event-target-shim": "^6.0.2",
+    "fetch-blob": "^2.1.1",
+    "node-fetch": "^2.6.1",
+    "tap": "^14.11.0"
+  }
+}
