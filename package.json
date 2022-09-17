@@ -25,11 +25,11 @@
   "homepage": "https://github.com/apple502j/xhr-shim#readme",
   "devDependencies": {
     "abort-controller": "^3.0.0",
-    "domexception": "^2.0.1",
-    "eslint": "^7.20.0",
+    "domexception": "^4.0.0",
+    "eslint": "^8.23.1",
     "event-target-shim": "^6.0.2",
-    "fetch-blob": "^2.1.1",
-    "node-fetch": "^2.6.1",
-    "tap": "^14.11.0"
+    "fetch-blob": "^3.2.0",
+    "node-fetch": "^3.2.10",
+    "tap": "^16.3.0"
   }
 }
