@@ -1,6 +1,6 @@
-const tap = require("tap");
-require("./polyfill.js");
-const XMLHttpRequest = require("..");
+import tap from "tap";
+import "./polyfill.mjs";
+import XMLHttpRequest from "../src/index.js";
 
 tap.test("fetch example.com", t => {
   t.plan(6);
