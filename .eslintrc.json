@@ -11,11 +11,17 @@
     "default-case-last": 2,
     "eqeqeq": 2,
     "guard-for-in": 2,
-    "no-empty": [2, { "allowEmptyCatch": true }],
+    "no-empty": [
+      2,
+      {
+        "allowEmptyCatch": true
+      }
+    ],
     "no-caller": 2,
     "no-implied-eval": 2,
     "no-new-wrappers": 2,
     "no-proto": 2,
-    "no-warning-comments": 1
+    "no-warning-comments": 1,
+    "no-constant-binary-expression": 2
   }
 }

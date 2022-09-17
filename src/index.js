@@ -1,5 +1,5 @@
 /* global module */
-/* global EventTarget, AbortController, DOMException, CustomEvent */
+/* global EventTarget, AbortController, DOMException */
 
 const sHeaders = Symbol("headers");
 const sRespHeaders = Symbol("response headers");
@@ -14,7 +14,7 @@ const sTimedOut = Symbol("timedOut");
 const sIsResponseText = Symbol("isResponseText");
 
 const XMLHttpRequestShim = class XMLHttpRequest extends EventTarget {
-  constructor () {
+  constructor() {
     super();
     this.readyState = this.constructor.UNSENT;
     this.response = null;
@@ -36,31 +36,31 @@ const XMLHttpRequestShim = class XMLHttpRequest extends EventTarget {
     this[sTimedOut] = false;
     this[sIsResponseText] = true;
   }
-  static get UNSENT () {
+  static get UNSENT() {
     return 0;
   }
-  static get OPENED () {
+  static get OPENED() {
     return 1;
   }
-  static get HEADERS_RECEIVED () {
+  static get HEADERS_RECEIVED() {
     return 2;
   }
-  static get LOADING () {
+  static get LOADING() {
     return 3;
   }
-  static get DONE () {
+  static get DONE() {
     return 4;
   }
-  get responseText () {
+  get responseText() {
     if (this[sErrored]) return null;
     if (this.readyState < this.constructor.HEADERS_RECEIVED) return "";
     if (this[sIsResponseText]) return this.response;
     throw new DOMException("Response type not set to text", "InvalidStateError");
   }
-  get responseXML () {
+  get responseXML() {
     throw new Error("XML not supported");
   }
-  [sDispatch] (evt) {
+  [sDispatch](evt) {
     const attr = `on${evt.type}`;
     if (typeof this[attr] === "function") {
       this.addEventListener(evt.type, this[attr].bind(this), {
@@ -69,18 +69,18 @@ const XMLHttpRequestShim = class XMLHttpRequest extends EventTarget {
     }
     this.dispatchEvent(evt);
   }
-  abort () {
+  abort() {
     this[sAbortController].abort();
     this.status = 0;
     this.readyState = this.constructor.UNSENT;
   }
-  open (method, url) {
+  open(method, url) {
     this.status = 0;
     this[sMethod] = method;
     this[sURL] = url;
     this.readyState = this.constructor.OPENED;
   }
-  setRequestHeader (header, value) {
+  setRequestHeader(header, value) {
     header = String(header).toLowerCase();
     if (typeof this[sHeaders][header] === "undefined") {
       this[sHeaders][header] = String(value);
@@ -88,18 +88,18 @@ const XMLHttpRequestShim = class XMLHttpRequest extends EventTarget {
       this[sHeaders][header] += `, ${value}`;
     }
   }
-  overrideMimeType (mimeType) {
+  overrideMimeType(mimeType) {
     this[sMIME] = String(mimeType);
   }
-  getAllResponseHeaders () {
+  getAllResponseHeaders() {
     if (this[sErrored] || this.readyState < this.constructor.HEADERS_RECEIVED) return "";
     return Object.entries(this[sRespHeaders]).map(([header, value]) => `${header}: ${value}`).join("\r\n");
   }
-  getResponseHeader (headerName) {
+  getResponseHeader(headerName) {
     const value = this[sRespHeaders][String(headerName).toLowerCase()];
     return typeof value === "string" ? value : null;
   }
-  send (body = null) {
+  send(body = null) {
     if (this.timeout > 0) {
       this[sTimeout] = setTimeout(() => {
         this[sTimedOut] = true;
@@ -129,7 +129,7 @@ const XMLHttpRequestShim = class XMLHttpRequest extends EventTarget {
           this.response = await resp.text();
           break;
         case "blob":
-          this.response = new Blob([await resp.arrayBuffer()], {type: finalMIME});
+          this.response = new Blob([await resp.arrayBuffer()], { type: finalMIME });
           break;
         case "arraybuffer":
           this.response = await resp.arrayBuffer();
