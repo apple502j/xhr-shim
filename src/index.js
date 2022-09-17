@@ -155,5 +155,5 @@ const XMLHttpRequestShim = class XMLHttpRequest extends EventTarget {
 if (typeof module === "object" && module.exports) {
   module.exports = XMLHttpRequestShim;
 } else {
-  (globalThis || self).XMLHttpRequestShim = XMLHttpRequest;
+  (globalThis || self).XMLHttpRequestShim = XMLHttpRequestShim;
 }
