@@ -5,7 +5,7 @@
   "main": "src/index.js",
   "scripts": {
     "test:lint": "eslint ./src/*.js",
-    "test:tap": "npx tap --no-coverage ./test/test.*.js",
+    "test:tap": "npx tap --no-coverage ./test/test.*.mjs",
     "test": "npm run test:lint & npm run test:tap"
   },
   "repository": {
